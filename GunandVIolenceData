@@ -1,0 +1,479 @@
+"""
+Created on Fri Dec 25 20:57:57 2020
+@author: Asus
+"""
+
+import numpy as np
+import pandas as pd
+
+
+import numpy as np 
+import matplotlib.pyplot as plt 
+
+import random
+import time
+
+
+def str_time_prop(start, end, format, prop):
+    """Get a time at a proportion of a range of two formatted times.
+    start and end should be strings specifying times formated in the
+    given format (strftime-style), giving an interval [start, end].
+    prop specifies how a proportion of the interval to be taken after
+    start.  The returned time will be in the specified format.
+    """
+
+    stime = time.mktime(time.strptime(start, format))
+    etime = time.mktime(time.strptime(end, format))
+
+    ptime = stime + prop * (etime - stime)
+
+    return time.strftime(format, time.localtime(ptime))
+
+
+def random_date(start, end, prop):
+    return str_time_prop(start, end, '%Y-%m-%d', prop)
+
+
+# Using choice() method 
+df = pd.DataFrame()
+
+
+
+
+df["Products"] =  np.random.choice(12, 1000000, p =[0.072	,
+0.3	,
+0.028	,
+0.057	,
+0.1	,
+0.06	,
+0.084	,
+0.03	,
+0.039	,
+0.17	,
+0.05	,
+0.01	
+])
+
+item=[]
+for items in df["Products"]:
+    item_ = (random_date("2015-01-01", "2021-02-20", random.random() ))
+    item.append(item_)
+    
+df["OrderDate"] =  item
+
+
+df['Products'].replace([0,1,2,3,4,5,6,7,8,9,10,11],['SA80','AK-47','MG34','Lewis','M3','Beretta AR70','Colt','Remington 870',
+'M19','AR15','RPG','UZI'],inplace=True)
+
+
+for index , row in df.iterrows():
+    if row['Products'] == 'SA80':
+        df.loc[index,"ProductsDescription"] = "Assault Rifle"
+   
+    elif (row['Products'] ==  'AK-47' ):
+        df.loc[index,"ProductsDescription"] = "Automatic Rifle"
+    elif (row['Products'] ==  'MG34' ):
+        df.loc[index,"ProductsDescription"] = "General-purpose machine gun"
+    elif (row['Products'] ==  'Lewis' ):
+        df.loc[index,"ProductsDescription"] = "Light machine gun"
+    elif (row['Products'] ==  'M3' ):
+        df.loc[index,"ProductsDescription"] = "submachine gun"
+    elif (row['Products'] ==  'Beretta AR70' ):
+        df.loc[index,"ProductsDescription"] = "Assault rifle"
+    elif (row['Products'] ==  'Colt' ):
+        df.loc[index,"ProductsDescription"] = "Revolver"
+    elif (row['Products'] ==  'Remington 870' ):
+        df.loc[index,"ProductsDescription"] = "Shotgun"
+    elif (row['Products'] ==  'M19' ):
+        df.loc[index,"ProductsDescription"] = "Revolver"
+    elif (row['Products'] ==  'AR15' ):
+        df.loc[index,"ProductsDescription"] = "Self-loading rifle"
+    elif (row['Products'] ==  'RPG' ):
+        df.loc[index,"ProductsDescription"] = "shoulder-fired missile"
+    elif (row['Products'] ==  'UZI' ):
+        df.loc[index,"ProductsDescription"] = "Submachine gun"
+
+for index , row in df.iterrows():
+    if row['Products'] == 'SA80':
+        df.loc[index,"ProductCategory"] = "Rifle"
+   
+    elif (row['Products'] ==  'AK-47' ):
+        df.loc[index,"ProductCategory"] = "Rifle"
+    elif (row['Products'] ==  'MG34' ):
+        df.loc[index,"ProductCategory"] = "Machine gun"
+    elif (row['Products'] ==  'Lewis' ):
+        df.loc[index,"ProductCategory"] = "Machine gun"
+    elif (row['Products'] ==  'M3' ):
+        df.loc[index,"ProductCategory"] = "Submachine gun"
+    elif (row['Products'] ==  'Beretta AR70' ):
+        df.loc[index,"ProductCategory"] = "Rifle"
+    elif (row['Products'] ==  'Colt' ):
+        df.loc[index,"ProductCategory"] = "Revolver"
+    elif (row['Products'] ==  'Remington 870' ):
+        df.loc[index,"ProductCategory"] = "Shotgun"
+    elif (row['Products'] ==  'M19' ):
+        df.loc[index,"ProductCategory"] = "Revolver"
+    elif (row['Products'] ==  'AR15' ):
+        df.loc[index,"ProductCategory"] = "Rifle"
+    elif (row['Products'] ==  'RPG' ):
+        df.loc[index,"ProductCategory"] = "Missile"
+    elif (row['Products'] ==  'UZI' ):
+        df.loc[index,"ProductCategory"] = "Submachine gun"
+
+df['ManufacturedCountry'] = ''
+
+for index , row in df.iterrows():
+    if row['Products'] == 'SA80':
+        df.loc[index,"ManufacturedCountry"] = "United Kingdom"
+   
+    elif (row['Products'] ==  'AK-47' ):
+        df.loc[index,"ManufacturedCountry"] = "Russia"
+    elif (row['Products'] ==  'MG34' ):
+        df.loc[index,"ManufacturedCountry"] = "Germany"
+    elif (row['Products'] ==  'Lewis' ):
+        df.loc[index,"ManufacturedCountry"] = "United Kingdom"
+    elif (row['Products'] ==  'M3' ):
+        df.loc[index,"ManufacturedCountry"] = "United States"
+    elif (row['Products'] ==  'Beretta AR70' ):
+        df.loc[index,"ManufacturedCountry"] = "Italy"
+    elif (row['Products'] ==  'Colt' ):
+        df.loc[index,"ManufacturedCountry"] = "United States"
+    elif (row['Products'] ==  'Remington 870' ):
+        df.loc[index,"ManufacturedCountry"] = "United States"
+    elif (row['Products'] ==  'M19' ):
+        df.loc[index,"ManufacturedCountry"] = "Italy"
+    elif (row['Products'] ==  'AR15' ):
+        df.loc[index,"ManufacturedCountry"] = "United States"
+    elif (row['Products'] ==  'RPG' ):
+        df.loc[index,"ManufacturedCountry"] = "Russia"
+    elif (row['Products'] ==  'UZI' ):
+        df.loc[index,"ManufacturedCountry"] = "Israel"
+
+for index , row in df.iterrows():
+    if row['Products'] == 'SA80':
+        df.loc[index,"ProductCost"] = "500"
+   
+    elif (row['Products'] ==  'AK-47' ):
+        df.loc[index,"ProductCost"] = "1800"
+    elif (row['Products'] ==  'MG34' ):
+        df.loc[index,"ProductCost"] = "350"
+    elif (row['Products'] ==  'Lewis' ):
+        df.loc[index,"ProductCost"] = "200"
+    elif (row['Products'] ==  'M3' ):
+        df.loc[index,"ProductCost"] = "2500"
+    elif (row['Products'] ==  'Beretta AR70' ):
+        df.loc[index,"ProductCost"] = "2750"
+    elif (row['Products'] ==  'Colt' ):
+        df.loc[index,"ProductCost"] = "251"
+    elif (row['Products'] ==  'Remington 870' ):
+        df.loc[index,"ProductCost"] = "300"
+    elif (row['Products'] ==  'M19' ):
+        df.loc[index,"ProductCost"] = "275"
+    elif (row['Products'] ==  'AR15' ):
+        df.loc[index,"ProductCost"] = "1950"
+    elif (row['Products'] ==  'RPG' ):
+        df.loc[index,"ProductCost"] = "3000"
+    elif (row['Products'] ==  'UZI' ):
+        df.loc[index,"ProductCost"] = "2300"
+
+df["InventoryID"] =  np.random.choice(11, 1000000, p =[
+0.2	,
+0.15	,
+0.01	,
+0.3	,
+0.028	,
+0.057	,
+0.03	,
+0.039	,
+0.026	,
+0.1	,
+0.06	
+])
+
+for index , row in df.iterrows():
+    if row['Products'] == 'SA80':
+        upperLim = -20
+        lowerLim = 150
+        df.loc[index,"SalePricePerPiece"] = int(df["ProductCost"][index]) + random.uniform(upperLim, lowerLim)
+   
+    elif (row['Products'] ==  'AK-47' ):
+        upperLim = 30
+        lowerLim = 250
+        df.loc[index,"SalePricePerPiece"] = int(df["ProductCost"][index]) + random.uniform(upperLim, lowerLim)
+    elif (row['Products'] ==  'MG34' ):
+        upperLim = 15
+        lowerLim = 90
+        df.loc[index,"SalePricePerPiece"] = int(df["ProductCost"][index]) + random.uniform(upperLim, lowerLim)
+    elif (row['Products'] ==  'Lewis' ):
+        upperLim = -5
+        lowerLim = 100
+        df.loc[index,"SalePricePerPiece"] = int(df["ProductCost"][index]) + random.uniform(upperLim, lowerLim)
+    elif (row['Products'] ==  'M3' ):
+        upperLim = -15
+        lowerLim = 90
+        df.loc[index,"SalePricePerPiece"] = int(df["ProductCost"][index]) + random.uniform(upperLim, lowerLim)
+    elif (row['Products'] ==  'Beretta AR70' ):
+        upperLim = -39
+        lowerLim = 90
+        df.loc[index,"SalePricePerPiece"] = int(df["ProductCost"][index]) + random.uniform(upperLim, lowerLim)
+    elif (row['Products'] ==  'Colt' ):
+        upperLim = -15
+        lowerLim = 60
+        df.loc[index,"SalePricePerPiece"] = int(df["ProductCost"][index]) + random.uniform(upperLim, lowerLim)
+    elif (row['Products'] ==  'Remington 870' ):
+        upperLim = -45
+        lowerLim = 275
+        df.loc[index,"SalePricePerPiece"] = int(df["ProductCost"][index]) + random.uniform(upperLim, lowerLim)
+    elif (row['Products'] ==  'M19' ):
+        upperLim = 25
+        lowerLim = 125
+        df.loc[index,"SalePricePerPiece"] = int(df["ProductCost"][index]) + random.uniform(upperLim, lowerLim)
+    elif (row['Products'] ==  'AR15' ):
+        upperLim = 20
+        lowerLim = 150
+        df.loc[index,"SalePricePerPiece"] = int(df["ProductCost"][index]) + random.uniform(upperLim, lowerLim)
+    elif (row['Products'] ==  'RPG' ):
+        upperLim = -120
+        lowerLim = 150
+        df.loc[index,"SalePricePerPiece"] = int(df["ProductCost"][index]) + random.uniform(upperLim, lowerLim)
+    elif (row['Products'] ==  'UZI' ):
+        upperLim = -40
+        lowerLim = 110
+        df.loc[index,"SalePricePerPiece"] = int(df["ProductCost"][index]) + random.uniform(upperLim, lowerLim)
+
+df.sort_values(by=['OrderDate'], inplace=True)
+
+for index , row in df.iterrows():
+    if row['Products'] == 'SA80':
+        upperLim = 6
+        lowerLim = 200
+        df.loc[index,"QuantityPurchased"] = round(random.uniform(upperLim, lowerLim))
+   
+    elif (row['Products'] ==  'AK-47' ):
+        upperLim = 6
+        lowerLim = 250
+        df.loc[index,"QuantityPurchased"] = round(random.uniform(upperLim, lowerLim))
+    elif (row['Products'] ==  'MG34' ):
+        upperLim = 15
+        lowerLim = 90
+        df.loc[index,"QuantityPurchased"] = round(random.uniform(upperLim, lowerLim))
+    elif (row['Products'] ==  'Lewis' ):
+        upperLim = 20
+        lowerLim = 100
+        df.loc[index,"QuantityPurchased"] =  round(random.uniform(upperLim, lowerLim))
+    elif (row['Products'] ==  'M3' ):
+        upperLim = 25
+        lowerLim = 100
+        df.loc[index,"QuantityPurchased"] = round(random.uniform(upperLim, lowerLim))
+    elif (row['Products'] ==  'Beretta AR70' ):
+        upperLim = 1
+        lowerLim = 200
+        df.loc[index,"QuantityPurchased"] =  round(random.uniform(upperLim, lowerLim))
+    elif (row['Products'] ==  'Colt' ):
+        upperLim = 1
+        lowerLim = 200
+        df.loc[index,"QuantityPurchased"] = round(random.uniform(upperLim, lowerLim))
+    elif (row['Products'] ==  'Remington 870' ):
+        upperLim = 5
+        lowerLim = 50
+        df.loc[index,"QuantityPurchased"] = round( random.uniform(upperLim, lowerLim))
+    elif (row['Products'] ==  'M19' ):
+        upperLim = 15
+        lowerLim = 100
+        df.loc[index,"QuantityPurchased"] = round(random.uniform(upperLim, lowerLim))
+    elif (row['Products'] ==  'AR15' ):
+        upperLim = 25
+        lowerLim = 150
+        df.loc[index,"QuantityPurchased"] =  round(random.uniform(upperLim, lowerLim))
+    elif (row['Products'] ==  'RPG' ):
+        upperLim = 2
+        lowerLim = 15
+        df.loc[index,"QuantityPurchased"] = round(random.uniform(upperLim, lowerLim))
+    elif (row['Products'] ==  'UZI' ):
+        upperLim = 20
+        lowerLim = 200
+        df.loc[index,"QuantityPurchased"] = round(random.uniform(upperLim, lowerLim))
+
+
+df['Currency']= 'USD'
+df['InventoryID'].replace([0,1,2,3,4,5,6,7,8,9,10],['INV_X90ZAE_X01','INV_X90ZAE_X02','INV_X90ZAE_X03','INV_X90ZAE_X04','INV_X90ZAE_X05','INV_X90ZAE_X06','INV_X90ZAE_X07','INV_X90ZAE_X08','INV_X90ZAE_X09','INV_X90ZAE_X010','INV_X90ZAE_X011'],inplace=True)
+df["InventoryCity"] =  np.random.choice(7, 1000000, p =[0.05,0.15,0.2,0.2,0.1,0.2,0.1])
+df['InventoryCity'].replace([0,1,2,3,4,5,6],['Kandy','Chennai','Colombo','Lagos','Bangalore','Frankfurt','Mumbai'],inplace=True)
+for index , row in df.iterrows():
+    if row['InventoryCity'] == 'Kandy':
+        df.loc[index,'Latitude']='7.2906'
+        df.loc[index,'Longitude']='80.6336'
+        df.loc[index,"Country"] = 'Srilanka'
+        df.loc[index,"CountryCode"] = 'LK'
+
+    elif row['InventoryCity'] == 'Colombo':
+        df.loc[index,'Latitude']='6.874092'
+        df.loc[index,'Longitude']='79.860497'
+        df.loc[index,"Country"] = 'Srilanka'
+        df.loc[index,"CountryCode"] = 'LK'
+
+    elif row['InventoryCity'] == 'Chennai':
+       	df.loc[index,'Latitude']='13.067439'
+        df.loc[index,'Longitude']='80.237617'
+        df.loc[index,"Country"] = 'India'
+        df.loc[index,"CountryCode"] = 'IN'
+    elif row['InventoryCity'] == 'Bangalore':
+       	df.loc[index,'Latitude']='12.972442'
+        df.loc[index,'Longitude']='77.580643'
+        df.loc[index,"Country"] = 'India'
+        df.loc[index,"CountryCode"] = 'IN'
+    elif row['InventoryCity'] == 'Mumbai':
+       	df.loc[index,'Latitude']='19.076090'
+        df.loc[index,'Longitude']='72.877426'
+        df.loc[index,"Country"] = 'India'
+        df.loc[index,"CountryCode"] = 'IN'
+
+    elif row['InventoryCity'] == 'Lagos':
+       	df.loc[index,'Latitude']='6.465422'
+        df.loc[index,'Longitude']='3.406448'
+        df.loc[index,"Country"] = 'Nigeria'
+        df.loc[index,"CountryCode"] = 'NG'
+
+    elif row['InventoryCity'] == 'Frankfurt':
+       	df.loc[index,'Latitude']='50.110924'
+        df.loc[index,'Longitude']='8.682127'
+        df.loc[index,"Country"] = 'Germany'
+        df.loc[index,"CountryCode"] = 'DE'
+        
+#df["EID"] =  np.random.choice(15, 1000000, p =[0.08,0.01,0.069,0.02,0.065,0.02,0.049,0.042,0.19,0.14,0.09,0.07,0.015,0.09,0.05])
+#df['EID'].replace([0,1,2,3,4,5,6,7,8,9,10,14],['E00','E01','E02','E03','E04','E05','E06','E07','E08','E09','E10','E11','E12','E13','E14'],inplace=True)
+df["EID"] =  np.random.choice(15, 1000000, p =[0.012	,
+0.01	,
+0.01887	,
+0.04	,
+0.056	,
+0.014	,
+0.0196	,
+0.01263	,
+0.0289	,
+0.256	,
+0.19	,
+0.13	,
+0.173	,
+0.014	,
+0.025	
+])
+df['EID'].replace([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14],['E00','E01','E02','E03','E04','E05','E06','E07','E08','E09','E10','E11','E12','E13','E14'],inplace=True)
+
+for index , row in df.iterrows():
+	if row['EID'] == 'E01':
+		 df.loc[index,'Employee FirstName'] ='Robert'
+		 df.loc[index,'Employee LastName'] ='Simsons'
+		 df.loc[index,'Employee Gender'] ='Male'
+		 df.loc[index,'SaleXpLevel'] ='1.5'
+		 df.loc[index,'Ratings'] ='3.1'
+					
+
+	elif row['EID'] == 'E00':
+		 df.loc[index,'Employee FirstName'] ='Julie'
+		 df.loc[index,'Employee LastName'] ='Killonson'
+		 df.loc[index,'Employee Gender'] ='Female'
+		 df.loc[index,'SaleXpLevel'] ='1.25'
+		 df.loc[index,'Ratings'] ='3'
+
+	elif row['EID'] == 'E02':
+		 df.loc[index,'Employee FirstName'] ='Jenny'
+		 df.loc[index,'Employee LastName'] ='Maddison'
+		 df.loc[index,'Employee Gender'] ='Female'
+		 df.loc[index,'SaleXpLevel'] ='2.5'
+		 df.loc[index,'Ratings'] ='3'
+
+	elif row['EID'] == 'E03':
+		 df.loc[index,'Employee FirstName'] ='Dmitrij'
+		 df.loc[index,'Employee LastName'] ='Ilkovan'
+		 df.loc[index,'Employee Gender'] ='Male'
+		 df.loc[index,'SaleXpLevel'] ='1.5'
+		 df.loc[index,'Ratings'] ='3'
+         
+	elif row['EID'] == 'E04':
+		 df.loc[index,'Employee FirstName'] ='Tobias'
+		 df.loc[index,'Employee LastName'] ='Helington'
+		 df.loc[index,'Employee Gender'] ='Male'
+		 df.loc[index,'SaleXpLevel'] ='1.5'
+		 df.loc[index,'Ratings'] ='3'
+
+	elif row['EID'] == 'E05':
+		 df.loc[index,'Employee FirstName'] ='Sophia'
+		 df.loc[index,'Employee LastName'] ='Anderson'
+		 df.loc[index,'Employee Gender'] ='Female'
+		 df.loc[index,'SaleXpLevel'] ='1.5'
+		 df.loc[index,'Ratings'] ='3.5'
+
+	elif row['EID'] == 'E06':
+		 df.loc[index,'Employee FirstName'] ='Bill'
+		 df.loc[index,'Employee LastName'] ='MCDermott'
+		 df.loc[index,'Employee Gender'] ='Male'
+		 df.loc[index,'SaleXpLevel'] ='1.75'
+		 df.loc[index,'Ratings'] ='3.6'
+
+	elif row['EID'] == 'E07':
+		 df.loc[index,'Employee FirstName'] ='Jermie'
+		 df.loc[index,'Employee LastName'] ='Sims'
+		 df.loc[index,'Employee Gender'] ='Male'
+		 df.loc[index,'SaleXpLevel'] ='1.5'
+		 df.loc[index,'Ratings'] ='2.7'
+
+	elif row['EID'] == 'E08':
+		 df.loc[index,'Employee FirstName'] ='Joe'
+		 df.loc[index,'Employee LastName'] ='Dane'
+		 df.loc[index,'Employee Gender'] ='Male'
+		 df.loc[index,'SaleXpLevel'] ='7.5'
+		 df.loc[index,'Ratings'] ='3.9'
+
+	elif row['EID'] == 'E09':
+		 df.loc[index,'Employee FirstName'] ='Famis'
+		 df.loc[index,'Employee LastName'] ='Lijie'
+		 df.loc[index,'Employee Gender'] ='Female'
+		 df.loc[index,'SaleXpLevel'] ='8'
+		 df.loc[index,'Ratings'] ='4.25'
+
+	elif row['EID'] == 'E10':
+		 df.loc[index,'Employee FirstName'] ='Betsy'
+		 df.loc[index,'Employee LastName'] ='Domnik'
+		 df.loc[index,'Employee Gender'] ='Female'
+		 df.loc[index,'SaleXpLevel'] ='9'
+		 df.loc[index,'Ratings'] ='4.75'
+
+	elif row['EID'] == 'E11':
+		 df.loc[index,'Employee FirstName'] ='Jude'
+		 df.loc[index,'Employee LastName'] ='Thomas'
+		 df.loc[index,'Employee Gender'] ='Male'
+		 df.loc[index,'SaleXpLevel'] ='8'
+		 df.loc[index,'Ratings'] ='4.5'
+
+	elif row['EID'] == 'E12':
+		 df.loc[index,'Employee FirstName'] ='Jill'
+		 df.loc[index,'Employee LastName'] ='Diana'
+		 df.loc[index,'Employee Gender'] ='Female'
+		 df.loc[index,'SaleXpLevel'] ='0.65'
+		 df.loc[index,'Ratings'] ='4.1'
+
+	elif row['EID'] == 'E13':
+		 df.loc[index,'Employee FirstName'] ='Kate'
+		 df.loc[index,'Employee LastName'] ='Hilton'
+		 df.loc[index,'Employee Gender'] ='Female'
+		 df.loc[index,'SaleXpLevel'] ='2.5'
+		 df.loc[index,'Ratings'] ='3.25'
+
+	elif row['EID'] == 'E14':
+		 df.loc[index,'Employee FirstName'] ='Mathew'
+		 df.loc[index,'Employee LastName'] ='Hardy'
+		 df.loc[index,'Employee Gender'] ='Male'
+		 df.loc[index,'SaleXpLevel'] ='1.5'
+		 df.loc[index,'Ratings'] ='3.6'
+
+
+print(df)
+
+
+df['OrderNr'] = 'ORDX09101ZX' + df.index.astype(str)
+        
+df.to_csv('DataFinalBig.csv', encoding='utf-8',header=True)
+
+
+
